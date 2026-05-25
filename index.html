@@ -158,12 +158,11 @@
           </a>
         </div>
       </div>
-      <div class="hidden md:flex justify-center">
-        <!-- Hero logo display / replace with a salon photo if preferred -->
-        <div class="relative w-80 h-80 flex items-center justify-center">
-          <div class="absolute inset-0 rounded-full border border-gold/20"></div>
-          <div class="absolute inset-4 rounded-full border border-gold/10"></div>
-          <img src="assets/logo.png" alt="Evolve Beauty Lounge" class="w-64 h-64 object-contain drop-shadow-2xl" />
+      <div class="hidden md:block">
+        <div class="relative">
+          <div class="absolute -inset-2 border border-gold/20"></div>
+          <img src="assets/IMG_4057.jpeg" alt="Evolve Beauty Lounge interior" class="w-full h-[560px] object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent"></div>
         </div>
       </div>
     </div>
@@ -233,9 +232,9 @@
   <section id="about" class="py-28 bg-navy">
     <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
       <div class="fade-in order-2 md:order-1">
-        <!-- Replace with interior or team photo -->
-        <div class="w-full aspect-[4/5] bg-navymd border border-gold/20 flex items-center justify-center">
-          <p class="text-gold/30 font-body text-xs tracking-widest uppercase">[ Add salon photo ]</p>
+        <div class="relative">
+          <div class="absolute -inset-2 border border-gold/20"></div>
+          <img src="assets/IMG_4055.jpeg" alt="Evolve Beauty Lounge lounge area" class="w-full aspect-[4/5] object-cover" />
         </div>
       </div>
       <div class="fade-in order-1 md:order-2">
@@ -267,13 +266,21 @@
         <p class="text-gold text-xs font-body tracking-[0.3em] uppercase mb-4">Our Work</p>
         <h2 class="font-serif text-5xl font-light text-navy">Gallery</h2>
       </div>
-      <!-- Replace these divs with <img> tags of your work -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 fade-in">
-        <div class="aspect-square bg-goldlt/30 border border-gold/20"></div>
-        <div class="aspect-square bg-navy/10 border border-gold/20 md:col-span-2 md:row-span-2"></div>
-        <div class="aspect-square bg-goldlt/20 border border-gold/20"></div>
-        <div class="aspect-square bg-navy/5 border border-gold/20"></div>
-        <div class="aspect-square bg-goldlt/40 border border-gold/20"></div>
+        <!-- Large feature: salon styling floor -->
+        <div class="col-span-2 row-span-2">
+          <img src="assets/IMG_4051.jpeg" alt="Salon styling stations" class="w-full h-full object-cover" />
+        </div>
+        <!-- Hair work -->
+        <img src="assets/1.jpg"         alt="Balayage hair" class="aspect-square object-cover w-full" />
+        <img src="assets/IMG_1318.jpg"  alt="Blonde waves"  class="aspect-square object-cover w-full" />
+        <img src="assets/IMG_1319.jpg"  alt="Silver balayage" class="aspect-square object-cover w-full" />
+        <img src="assets/IMG_1321.jpg"  alt="Blonde balayage" class="aspect-square object-cover w-full" />
+        <!-- Sauna -->
+        <img src="assets/IMG_6200.jpeg" alt="Infrared sauna" class="aspect-square object-cover w-full" />
+        <!-- Salon interior details -->
+        <img src="assets/IMG_4054.jpeg" alt="Salon interior" class="aspect-square object-cover w-full" />
+        <img src="assets/IMG_4050.jpeg" alt="Salon lounge"   class="aspect-square object-cover w-full col-span-2" style="aspect-ratio:2/1" />
       </div>
       <p class="text-center text-navy/40 font-body text-xs tracking-widest uppercase mt-8 fade-in">
         Follow us on Instagram for more
