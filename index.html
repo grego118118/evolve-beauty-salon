@@ -11,14 +11,14 @@
       theme: {
         extend: {
           colors: {
-            navy:    '#0d1b2a',
-            navymd:  '#1a2e46',
-            navylt:  '#243d5c',
-            gold:    '#c9a84c',
-            goldlt:  '#e8d5a3',
-            golddk:  '#a07c2e',
-            cream:   '#faf8f4',
-            offwhite:'#f3ede3',
+            navy:    '#346987',
+            navymd:  '#2a546e',
+            navylt:  '#61a9c7',
+            gold:    '#f1c279',
+            goldlt:  '#f8dfa0',
+            golddk:  '#aa7e3b',
+            cream:   '#f5f7f8',
+            offwhite:'#e8edf0',
           },
           fontFamily: {
             sans:  ['Cormorant Garamond', 'Georgia', 'serif'],
@@ -43,30 +43,30 @@
       display: block;
       width: 48px;
       height: 1px;
-      background: #c9a84c;
+      background: #f1c279;
       margin: 0 auto 1.25rem;
     }
 
     .hero-bg {
-      background: linear-gradient(160deg, #0d1b2a 0%, #1a2e46 60%, #243d5c 100%);
+      background: linear-gradient(160deg, #346987 0%, #2a546e 60%, #1e3f54 100%);
     }
 
     .gold-gradient {
-      background: linear-gradient(135deg, #c9a84c 0%, #e8d5a3 50%, #a07c2e 100%);
+      background: linear-gradient(135deg, #f1c279 0%, #f8dfa0 50%, #aa7e3b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
     .service-card {
-      background: linear-gradient(145deg, #ffffff 0%, #faf8f4 100%);
-      border: 1px solid #e8d5a3;
+      background: linear-gradient(145deg, #ffffff 0%, #f5f7f8 100%);
+      border: 1px solid #d3d9d9;
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
     .service-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(201,168,76,0.15);
-      border-color: #c9a84c;
+      box-shadow: 0 12px 40px rgba(97,169,199,0.15);
+      border-color: #f1c279;
     }
 
     .fade-in {
@@ -78,7 +78,7 @@
 
     .nav-link {
       position: relative;
-      color: #e8d5a3;
+      color: #f8dfa0;
       font-size: 0.75rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -92,16 +92,16 @@
       left: 0;
       width: 0;
       height: 1px;
-      background: #c9a84c;
+      background: #f1c279;
       transition: width 0.3s ease;
     }
-    .nav-link:hover { color: #c9a84c; }
+    .nav-link:hover { color: #f1c279; }
     .nav-link:hover::after { width: 100%; }
 
     .divider {
       width: 60px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+      background: linear-gradient(90deg, transparent, #f1c279, transparent);
       margin: 0 auto;
     }
   </style>
@@ -189,8 +189,8 @@
   </section>
 
   <!-- TAGLINE STRIP -->
-  <div class="bg-gold py-5">
-    <p class="text-center text-navy text-xs font-body font-semibold tracking-[0.2em] uppercase flex flex-wrap justify-center gap-x-4 gap-y-1 px-4">
+  <div class="bg-navy py-5">
+    <p class="text-center text-gold text-xs font-body font-semibold tracking-[0.2em] uppercase flex flex-wrap justify-center gap-x-4 gap-y-1 px-4">
       <span>Organic Haircare</span><span>·</span><span>Clean Beauty</span><span>·</span><span>Infrared Sauna</span><span>·</span><span>Hadley, MA</span>
     </p>
   </div>
@@ -207,27 +207,27 @@
         <div class="service-card fade-in p-8 rounded-none">
           <p class="text-gold text-2xl mb-5">✦</p>
           <h3 class="font-serif text-2xl font-semibold text-navy mb-3">Hair</h3>
-          <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#c9a84c,transparent)"></div>
+          <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#f1c279,transparent)"></div>
           <p class="text-navy/60 font-body text-sm leading-relaxed font-light">Cuts, color, highlights, blowouts, extensions, and treatments for every hair type.</p>
           <p class="text-gold/70 font-body text-xs leading-relaxed font-light mt-4 tracking-wide">Featuring SRI blowdryers &amp; Innersense Organic Haircare.</p>
         </div>
         <div class="service-card fade-in p-8 rounded-none">
           <p class="text-gold text-2xl mb-5">✦</p>
           <h3 class="font-serif text-2xl font-semibold text-navy mb-3">Skin</h3>
-          <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#c9a84c,transparent)"></div>
+          <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#f1c279,transparent)"></div>
           <p class="text-navy/60 font-body text-sm leading-relaxed font-light">Facials, waxing, lash &amp; brow services, and skin treatments tailored to you.</p>
         </div>
         <div class="service-card fade-in p-8 rounded-none">
           <p class="text-gold text-2xl mb-5">✦</p>
           <h3 class="font-serif text-2xl font-semibold text-navy mb-3">Nails</h3>
-          <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#c9a84c,transparent)"></div>
+          <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#f1c279,transparent)"></div>
           <p class="text-navy/60 font-body text-sm leading-relaxed font-light">Manicures, pedicures, gel, acrylics, and nail art for every occasion.</p>
         </div>
 
         <div class="service-card fade-in p-8 rounded-none">
           <p class="text-gold text-2xl mb-5">✦</p>
           <h3 class="font-serif text-2xl font-semibold text-navy mb-3">Infrared Sauna</h3>
-          <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#c9a84c,transparent)"></div>
+          <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#f1c279,transparent)"></div>
           <p class="text-navy/60 font-body text-sm leading-relaxed font-light">Private Sunlighten mPulse infrared sauna with red light therapy. Detox, heal, and restore.</p>
         </div>
       </div>
