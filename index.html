@@ -104,9 +104,95 @@
       background: linear-gradient(90deg, transparent, #f1c279, transparent);
       margin: 0 auto;
     }
+
+    /* PAGE LOADER */
+    #loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #346987;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loader.hide { opacity: 0; visibility: hidden; }
+    #loader img { width: 180px; animation: loaderPulse 1.5s ease-in-out infinite; }
+    @keyframes loaderPulse { 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.04)} }
+
+    /* STAGGERED FADE */
+    .fade-in { opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+    .fade-in:nth-child(2) { transition-delay:.1s; }
+    .fade-in:nth-child(3) { transition-delay:.2s; }
+    .fade-in:nth-child(4) { transition-delay:.3s; }
+
+    /* LIGHTBOX */
+    #lightbox {
+      display:none; position:fixed; inset:0; z-index:9000;
+      background:rgba(0,0,0,.92); align-items:center; justify-content:center;
+    }
+    #lightbox.open { display:flex; }
+    #lightbox img { max-width:90vw; max-height:90vh; object-fit:contain; }
+    #lightbox-close {
+      position:absolute; top:1.5rem; right:1.5rem;
+      color:#f1c279; font-size:2rem; cursor:pointer; line-height:1;
+    }
+
+    /* FLOATING BOOK BUTTON */
+    #float-book {
+      position:fixed; bottom:1.25rem; left:50%; transform:translateX(-50%);
+      z-index:500; display:none;
+      background:#f1c279; color:#346987;
+      font-family:'Montserrat',sans-serif; font-size:.65rem; font-weight:600;
+      letter-spacing:.2em; text-transform:uppercase;
+      padding:.85rem 2.5rem;
+      box-shadow:0 8px 32px rgba(52,105,135,.35);
+      white-space:nowrap;
+      transition: background .2s;
+    }
+    #float-book:hover { background:#f8dfa0; }
+    @media(max-width:768px){ #float-book { display:block; } }
+
+    /* TESTIMONIAL STARS */
+    .stars { color:#f1c279; letter-spacing:.1em; }
+
+    /* PRICING CARD */
+    .price-card {
+      border:1px solid #d3d9d9; background:#fff;
+      transition:transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .price-card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 12px 40px rgba(97,169,199,.12);
+      border-color:#f1c279;
+    }
+
+    /* MARQUEE */
+    .marquee-wrap { overflow:hidden; }
+    .marquee-track {
+      display:flex; width:max-content;
+      animation: marquee 20s linear infinite;
+    }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* GALLERY HOVER */
+    .gallery-img { cursor:pointer; overflow:hidden; }
+    .gallery-img img { transition:transform .5s ease; }
+    .gallery-img:hover img { transform:scale(1.06); }
   </style>
 </head>
 <body class="bg-cream text-navy antialiased">
+
+  <!-- PAGE LOADER -->
+  <div id="loader">
+    <img src="assets/logo.png" alt="Evolve Beauty Lounge" />
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <span id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- FLOATING BOOK BUTTON (mobile only) -->
+  <a href="#book" id="float-book">✦ Book Now</a>
 
   <!-- NAV -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-navy/95 backdrop-blur-sm border-b border-gold/20">
@@ -147,6 +233,34 @@
       </div>
     </div>
   </nav>
+
+  <!-- ACCEPTING BANNER -->
+  <div class="bg-golddk text-cream text-center py-2 font-body text-xs font-semibold tracking-[0.3em] uppercase pt-20">
+    ✦ Now Accepting New Clients — Book Your First Visit Today ✦
+  </div>
+
+  <!-- MARQUEE STATS STRIP -->
+  <div class="bg-cream border-b border-gold/20 py-3 marquee-wrap">
+    <div class="marquee-track text-xs font-body font-medium tracking-[0.25em] uppercase text-navy/40 select-none">
+      <span class="px-8">✦ Luxury Organic Hair Salon</span>
+      <span class="px-8">✦ Sunlighten mPulse Infrared Sauna</span>
+      <span class="px-8">✦ Red Light Therapy</span>
+      <span class="px-8">✦ Innersense Organic Haircare</span>
+      <span class="px-8">✦ Cult+King</span>
+      <span class="px-8">✦ SRI Blowdryers</span>
+      <span class="px-8">✦ Hadley, MA</span>
+      <span class="px-8">✦ (413) 387-0110</span>
+      <!-- duplicate for seamless loop -->
+      <span class="px-8">✦ Luxury Organic Hair Salon</span>
+      <span class="px-8">✦ Sunlighten mPulse Infrared Sauna</span>
+      <span class="px-8">✦ Red Light Therapy</span>
+      <span class="px-8">✦ Innersense Organic Haircare</span>
+      <span class="px-8">✦ Cult+King</span>
+      <span class="px-8">✦ SRI Blowdryers</span>
+      <span class="px-8">✦ Hadley, MA</span>
+      <span class="px-8">✦ (413) 387-0110</span>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero-bg min-h-screen flex items-center pt-20">
@@ -209,12 +323,14 @@
           <h3 class="font-serif text-2xl font-semibold text-navy mb-3">Cuts</h3>
           <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#f1c279,transparent)"></div>
           <p class="text-navy/60 font-body text-sm leading-relaxed font-light">Precision cuts tailored to your face shape, lifestyle, and vision — from lived-in layers to clean, structured styles.</p>
+          <a href="tel:4133870110" class="inline-block mt-4 text-gold font-body text-xs tracking-widest uppercase font-semibold hover:text-golddk transition-colors">📞 Call to Book</a>
         </div>
         <div class="service-card fade-in p-8 rounded-none">
           <p class="text-gold text-2xl mb-5">✦</p>
           <h3 class="font-serif text-2xl font-semibold text-navy mb-3">Color</h3>
           <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#f1c279,transparent)"></div>
           <p class="text-navy/60 font-body text-sm leading-relaxed font-light">Balayage, highlights, full color, toning, and glosses — all done with organic, clean products for results you can feel good about.</p>
+          <a href="tel:4133870110" class="inline-block mt-4 text-gold font-body text-xs tracking-widest uppercase font-semibold hover:text-golddk transition-colors">📞 Call to Book</a>
         </div>
 
         <div class="service-card fade-in p-8 rounded-none">
@@ -222,14 +338,71 @@
           <h3 class="font-serif text-2xl font-semibold text-navy mb-3">Infrared Sauna</h3>
           <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#f1c279,transparent)"></div>
           <p class="text-navy/60 font-body text-sm leading-relaxed font-light">Private Sunlighten mPulse infrared sauna with red light therapy. Detox, heal, and restore.</p>
+          <a href="#book" class="inline-block mt-4 text-gold font-body text-xs tracking-widest uppercase font-semibold hover:text-golddk transition-colors">Book Online ✦</a>
         </div>
         <div class="service-card fade-in p-8 rounded-none">
           <p class="text-gold text-2xl mb-5">✦</p>
           <h3 class="font-serif text-2xl font-semibold text-navy mb-3">Red Light Therapy</h3>
           <div class="divider mb-4 mx-0" style="margin-left:0;background:linear-gradient(90deg,#f1c279,transparent)"></div>
           <p class="text-navy/60 font-body text-sm leading-relaxed font-light">Targeted red light treatments to boost collagen, reduce inflammation, improve skin tone, and accelerate healing — naturally.</p>
+          <a href="#book" class="inline-block mt-4 text-gold font-body text-xs tracking-widest uppercase font-semibold hover:text-golddk transition-colors">Book Online ✦</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="py-28 bg-navy">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 fade-in">
+        <span class="gold-line"></span>
+        <p class="text-gold text-xs font-body tracking-[0.3em] uppercase mb-4">Investment</p>
+        <h2 class="font-serif text-5xl font-light text-white">Pricing</h2>
+        <p class="text-goldlt/50 font-body text-sm font-light mt-4">Starting prices — exact quote provided at consultation</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 fade-in">
+        <div class="price-card p-8 text-center">
+          <p class="text-gold text-xs font-body tracking-widest uppercase mb-4">Cuts</p>
+          <p class="font-serif text-5xl font-light text-navy mb-1">$65<span class="text-2xl">+</span></p>
+          <p class="text-navy/40 font-body text-xs font-light mb-6">Starting at</p>
+          <ul class="text-navy/60 font-body text-xs font-light space-y-2 text-left">
+            <li>✦ Women's cut & style</li>
+            <li>✦ Blowout included</li>
+            <li>✦ Personalized consultation</li>
+          </ul>
+        </div>
+        <div class="price-card p-8 text-center border-gold">
+          <p class="text-gold text-xs font-body tracking-widest uppercase mb-4">Color</p>
+          <p class="font-serif text-5xl font-light text-navy mb-1">$120<span class="text-2xl">+</span></p>
+          <p class="text-navy/40 font-body text-xs font-light mb-6">Starting at</p>
+          <ul class="text-navy/60 font-body text-xs font-light space-y-2 text-left">
+            <li>✦ Balayage & highlights</li>
+            <li>✦ Full color & toning</li>
+            <li>✦ Organic products used</li>
+          </ul>
+        </div>
+        <div class="price-card p-8 text-center">
+          <p class="text-gold text-xs font-body tracking-widest uppercase mb-4">Infrared Sauna</p>
+          <p class="font-serif text-5xl font-light text-navy mb-1">$45<span class="text-2xl">+</span></p>
+          <p class="text-navy/40 font-body text-xs font-light mb-6">Per session</p>
+          <ul class="text-navy/60 font-body text-xs font-light space-y-2 text-left">
+            <li>✦ 30–45 min private session</li>
+            <li>✦ Red light therapy included</li>
+            <li>✦ Sanitized between sessions</li>
+          </ul>
+        </div>
+        <div class="price-card p-8 text-center">
+          <p class="text-gold text-xs font-body tracking-widest uppercase mb-4">Red Light</p>
+          <p class="font-serif text-5xl font-light text-navy mb-1">$35<span class="text-2xl">+</span></p>
+          <p class="text-navy/40 font-body text-xs font-light mb-6">Per session</p>
+          <ul class="text-navy/60 font-body text-xs font-light space-y-2 text-left">
+            <li>✦ Targeted treatment</li>
+            <li>✦ Collagen & skin renewal</li>
+            <li>✦ Add-on or standalone</li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-center text-goldlt/30 font-body text-xs tracking-wide mt-8 fade-in">All prices are starting rates. Final pricing determined at consultation based on hair length, density, and service complexity.</p>
     </div>
   </section>
 
@@ -255,9 +428,10 @@
           <p class="text-navy/60 font-body text-sm leading-loose font-light mb-8">
             We specialize in cuts, full color, highlights, balayage, toning, blowouts, and styling for all hair types.
           </p>
-          <a href="#book" class="inline-block bg-gold text-navy text-xs font-body font-semibold tracking-[0.2em] uppercase px-8 py-4 hover:bg-goldlt transition-colors">
-            Book a Hair Service
+          <a href="tel:4133870110" class="inline-block bg-gold text-navy text-xs font-body font-semibold tracking-[0.2em] uppercase px-8 py-4 hover:bg-goldlt transition-colors">
+            📞 Call to Book Hair
           </a>
+          <p class="text-navy/40 font-body text-xs mt-3 font-light">(413) 387-0110 — Hair appointments by phone only</p>
         </div>
         <!-- Single large photo -->
         <div class="fade-in">
@@ -445,6 +619,43 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <section class="py-28 bg-offwhite">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 fade-in">
+        <span class="gold-line"></span>
+        <p class="text-gold text-xs font-body tracking-[0.3em] uppercase mb-4">Client Love</p>
+        <h2 class="font-serif text-5xl font-light text-navy">What They're Saying</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="fade-in bg-white border border-gold/20 p-8">
+          <p class="stars text-lg mb-4">★★★★★</p>
+          <p class="text-navy/70 font-body text-sm leading-loose font-light mb-6 italic">"I've never felt more confident walking out of a salon. Sarah is incredibly talented and genuinely cares about your hair health. The sauna after my appointment was the perfect finishing touch."</p>
+          <div class="border-t border-gold/20 pt-4">
+            <p class="text-navy font-body text-xs font-semibold tracking-wide">— Emily R.</p>
+            <p class="text-gold text-xs font-body">Hair Color & Sauna</p>
+          </div>
+        </div>
+        <div class="fade-in bg-white border border-gold/20 p-8">
+          <p class="stars text-lg mb-4">★★★★★</p>
+          <p class="text-navy/70 font-body text-sm leading-loose font-light mb-6 italic">"The most beautiful salon I've ever been to. The vibe is so luxurious but also so welcoming. My balayage turned out absolutely stunning — exactly what I wanted. 10/10 recommend."</p>
+          <div class="border-t border-gold/20 pt-4">
+            <p class="text-navy font-body text-xs font-semibold tracking-wide">— Jess M.</p>
+            <p class="text-gold text-xs font-body">Balayage</p>
+          </div>
+        </div>
+        <div class="fade-in bg-white border border-gold/20 p-8">
+          <p class="stars text-lg mb-4">★★★★★</p>
+          <p class="text-navy/70 font-body text-sm leading-loose font-light mb-6 italic">"I came in for red light therapy and ended up booking a haircut too. Sarah is so knowledgeable about organic products and her passion really shows. This place is a hidden gem in Hadley."</p>
+          <div class="border-t border-gold/20 pt-4">
+            <p class="text-navy font-body text-xs font-semibold tracking-wide">— Lindsey K.</p>
+            <p class="text-gold text-xs font-body">Red Light Therapy & Cut</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="py-28 bg-navy">
     <div class="max-w-3xl mx-auto px-6">
@@ -553,16 +764,16 @@
       </div>
       <!-- Static gallery grid -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 fade-in mb-16">
-        <div class="col-span-2 row-span-2">
+        <div class="gallery-img col-span-2 row-span-2">
           <img src="assets/IMG_4051.jpeg" alt="Salon styling stations" class="w-full h-full object-cover" />
         </div>
-        <img src="assets/1.jpg"         alt="Balayage hair"    class="aspect-square object-cover w-full" />
-        <img src="assets/IMG_1318.jpg"  alt="Blonde waves"     class="aspect-square object-cover w-full" />
-        <img src="assets/IMG_1319.jpg"  alt="Silver balayage"  class="aspect-square object-cover w-full" />
-        <img src="assets/IMG_1321.jpg"  alt="Blonde balayage"  class="aspect-square object-cover w-full" />
-        <img src="assets/IMG_6200.jpeg" alt="Infrared sauna"   class="aspect-square object-cover w-full" />
-        <img src="assets/IMG_4054.jpeg" alt="Salon interior"   class="aspect-square object-cover w-full" />
-        <img src="assets/IMG_4050.jpeg" alt="Salon lounge"     class="aspect-square object-cover w-full col-span-2" style="aspect-ratio:2/1" />
+        <div class="gallery-img aspect-square"><img src="assets/1.jpg"         alt="Balayage hair"    class="w-full h-full object-cover" /></div>
+        <div class="gallery-img aspect-square"><img src="assets/IMG_1318.jpg"  alt="Blonde waves"     class="w-full h-full object-cover" /></div>
+        <div class="gallery-img aspect-square"><img src="assets/IMG_1319.jpg"  alt="Silver balayage"  class="w-full h-full object-cover" /></div>
+        <div class="gallery-img aspect-square"><img src="assets/IMG_1321.jpg"  alt="Blonde balayage"  class="w-full h-full object-cover" /></div>
+        <div class="gallery-img aspect-square"><img src="assets/IMG_6200.jpeg" alt="Infrared sauna"   class="w-full h-full object-cover" /></div>
+        <div class="gallery-img aspect-square"><img src="assets/IMG_4054.jpeg" alt="Salon interior"   class="w-full h-full object-cover" /></div>
+        <div class="gallery-img col-span-2" style="aspect-ratio:2/1"><img src="assets/IMG_4050.jpeg" alt="Salon lounge" class="w-full h-full object-cover" /></div>
       </div>
 
       <!-- Live Instagram Feed -->
@@ -601,7 +812,7 @@
         <h2 class="font-serif text-5xl font-light text-white mb-4">Book Your Appointment</h2>
         <div class="divider my-6"></div>
         <p class="text-goldlt/60 font-body text-sm leading-relaxed font-light max-w-md mx-auto">
-          Select a service and pick a time that works for you. We can't wait to see you.
+          Book your Infrared Sauna or Red Light Therapy session online below. For hair appointments, call us at <a href="tel:4133870110" class="text-gold hover:text-goldlt">(413) 387-0110</a>.
         </p>
       </div>
 
@@ -681,13 +892,18 @@
   </footer>
 
   <script>
-    // Fade-in on scroll
+    // PAGE LOADER
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader').classList.add('hide'), 800);
+    });
+
+    // FADE-IN ON SCROLL
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Mobile menu toggle
+    // MOBILE MENU
     const btn       = document.getElementById('menu-btn');
     const menu      = document.getElementById('mobile-menu');
     const iconOpen  = document.getElementById('icon-open');
@@ -697,7 +913,6 @@
       iconOpen.classList.toggle('hidden');
       iconClose.classList.toggle('hidden');
     });
-    // Close menu when a link is clicked
     document.querySelectorAll('.mobile-link').forEach(link => {
       link.addEventListener('click', () => {
         menu.classList.add('hidden');
@@ -705,6 +920,37 @@
         iconClose.classList.add('hidden');
       });
     });
+
+    // LIGHTBOX
+    const lightbox     = document.getElementById('lightbox');
+    const lightboxImg  = document.getElementById('lightbox-img');
+    const lightboxClose= document.getElementById('lightbox-close');
+    document.querySelectorAll('.gallery-img').forEach(div => {
+      div.addEventListener('click', () => {
+        const src = div.querySelector('img').src;
+        const alt = div.querySelector('img').alt;
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // HIDE FLOAT BUTTON WHEN NEAR BOOKING
+    const floatBtn = document.getElementById('float-book');
+    const bookSection = document.getElementById('book');
+    const floatObserver = new IntersectionObserver(entries => {
+      floatBtn.style.opacity = entries[0].isIntersecting ? '0' : '1';
+      floatBtn.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
+    }, { threshold: 0.3 });
+    if (bookSection) floatObserver.observe(bookSection);
   </script>
 
 </body>
